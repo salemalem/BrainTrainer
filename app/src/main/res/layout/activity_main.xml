@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#4CAF50"
+        android:onClick="start"
+        android:padding="40dp"
+        android:text="GO!"
+        android:textSize="40sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#F8E745"
+        android:padding="5dp"
+        android:text="30s"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sumTextView"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058" />
+
+    <TextView
+        android:id="@+id/pointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="#FF9800"
+        android:padding="10dp"
+        android:text="0/0"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="31 + 12"
+        android:textColor="#020202"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointsTextView"
+        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/answers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sumTextView">
+
+        <Button
+            android:id="@+id/answer0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#03A9F4"
+            android:onClick="chooseAnswer"
+            android:tag="0"
+            android:text="3"
+            android:textSize="80sp"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/answer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFEB3B"
+            android:onClick="chooseAnswer"
+            android:tag="1"
+            android:text="43"
+            android:textSize="80sp"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/answer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#4CAF50"
+            android:onClick="chooseAnswer"
+            android:tag="2"
+            android:text="45"
+            android:textSize="80sp"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/answer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#673AB7"
+            android:onClick="chooseAnswer"
+            android:tag="3"
+            android:text="33"
+            android:textSize="80sp"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+    </androidx.gridlayout.widget.GridLayout>
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answers" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
