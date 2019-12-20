@@ -3,6 +3,7 @@ package com.example.braintrainer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,10 +24,13 @@ public class MainActivity extends AppCompatActivity {
     TextView resultTextView;
     TextView pointsTextView;
     TextView sumTextView;
+    TextView timerTextView;
     Button button0, button1, button2, button3;
+    Button playAgainButton;
 
     public void start(View view) {
         startButton.setVisibility(View.INVISIBLE);
+        showItemsOnStart();
     }
 
     public void generateQuestion() {
@@ -70,6 +74,55 @@ public class MainActivity extends AppCompatActivity {
         pointsTextView.setText(Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
 
         generateQuestion();
+
+    }
+
+    public void playAgain(View view) {
+        score = 0;
+        numberOfQuestions = 0;
+
+        timerTextView.setText("30s");
+        pointsTextView.setText("0/0");
+        resultTextView.setText("");
+        playAgainButton.setVisibility(View.INVISIBLE);
+
+        generateQuestion();
+        new CountDownTimer(31000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timerTextView.setText(String.valueOf(millisUntilFinished / 1000) + "s");
+            }
+
+            @Override
+            public void onFinish() {
+                timerTextView.setText("0s");
+                resultTextView.setText("Your score: " + Integer.toString(score) + "/" + Integer.toString(numberOfQuestions));
+                playAgainButton.setVisibility(View.VISIBLE);
+            }
+        }.start();
+    }
+
+    public void hideItemsBeforeStart() {
+        timerTextView.setVisibility(View.INVISIBLE);
+        resultTextView.setVisibility(View.INVISIBLE);
+        sumTextView.setVisibility(View.INVISIBLE);
+        pointsTextView.setVisibility(View.INVISIBLE);
+        button0.setVisibility(View.INVISIBLE);
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.INVISIBLE);
+    }
+
+    public void showItemsOnStart() {
+        timerTextView.setVisibility(View.VISIBLE);
+        resultTextView.setVisibility(View.VISIBLE);
+        sumTextView.setVisibility(View.VISIBLE);
+        pointsTextView.setVisibility(View.VISIBLE);
+        button0.setVisibility(View.VISIBLE);
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -81,11 +134,14 @@ public class MainActivity extends AppCompatActivity {
         sumTextView = (TextView)findViewById(R.id.sumTextView);
         pointsTextView = (TextView)findViewById(R.id.pointsTextView);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
+        timerTextView  = (TextView) findViewById(R.id.timerTextView);
         button0 = (Button)findViewById(R.id.answer0);
         button1 = (Button)findViewById(R.id.answer1);
         button2 = (Button)findViewById(R.id.answer2);
         button3 = (Button)findViewById(R.id.answer3);
+        playAgainButton = (Button) findViewById(R.id.playAgainButton);
 
-        generateQuestion();
+        hideItemsBeforeStart();
+        playAgain(playAgainButton);
     }
 }
